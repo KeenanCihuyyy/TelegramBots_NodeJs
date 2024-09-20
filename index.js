@@ -7,6 +7,13 @@ const bot = new root(token, { polling: true });
 const OWNER_ID = 6354701765;
 const reportGroup = -1002469730932;
 
+setInterval(() => {
+    bot.sendMessage(OWNER_ID, 'Always Active Feature!')
+    .then((message) => {
+        bot.deleteMessage(OWNER_ID, message.mesage_id);
+    });
+}, 180000);
+
 let anonymousUsers = {};
 let activeSessions = {};
 let bannedUsers = {};
