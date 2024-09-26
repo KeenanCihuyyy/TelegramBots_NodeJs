@@ -1,18 +1,11 @@
 const root = require("node-telegram-bot-api");
 const fs = require("fs");
 
-const token = "7395566349:AAFFuU9TgJegE9cqo68tf40J__s7eeGxv0I";
+const token = "YOUR_TOKEN";
 const bot = new root(token, { polling: true });
 
-const OWNER_ID = 6354701765;
-const reportGroup = -1002469730932;
-
-setInterval(() => {
-    bot.sendMessage(OWNER_ID, 'Always Active Feature!')
-    .then((message) => {
-        bot.deleteMessage(OWNER_ID, message.mesage_id);
-    });
-}, 180000);
+const OWNER_ID = 12345;
+const reportGroup = 12345; // use ID Group or Owner ID
 
 let anonymousUsers = {};
 let activeSessions = {};
@@ -184,11 +177,4 @@ Type "/stop" to end the session.
 Type "/report <reply to message>" to report the user (partner) to the owner for banning (You must be in a session).
 Type "/chatowner <message>" to appeal a ban or send feedback.`;
     bot.sendMessage(chatId, welcomeText);
-});
-
-bot.on("message", (msg) => {
-    const chatId = msg.from.id;
-    const text = msg.text;
-    const username = msg.from.username;
-    bot.sendMessage(reportGroup, `User: @${username}\nID: ${chatId}\nMessage: ${text}`);
 });
